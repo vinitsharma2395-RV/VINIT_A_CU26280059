@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Study Goal Planner</title>
+	<style>
+		:root {
+			--ink: #172033;
+			--muted: #64748b;
+			--line: #d8e1ea;
+			--accent: #0891b2;
+			--accent-dark: #0e7490;
+			--accent-soft: #ecfeff;
+			--surface: #ffffff;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			min-height: 100vh;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin: 0;
+			padding: 24px;
+			background: linear-gradient(135deg, #ecfeff, #f8fafc 55%, #cffafe);
+			color: var(--ink);
+			font-family: "Segoe UI", Tahoma, sans-serif;
+		}
+
+		.planner-card {
+			width: min(100%, 590px);
+			padding: clamp(26px, 5vw, 44px);
+			border: 1px solid #dbe4ed;
+			border-radius: 18px;
+			background: var(--surface);
+			box-shadow: 0 22px 55px rgba(8, 145, 178, 0.14);
+		}
+
+		.eyebrow {
+			margin: 0 0 8px;
+			color: var(--accent-dark);
+			font-size: 0.76rem;
+			font-weight: 800;
+			letter-spacing: 0.13em;
+			text-transform: uppercase;
+		}
+
+		h1 {
+			margin: 0;
+			color: #164e63;
+			font-size: clamp(1.8rem, 4vw, 2.5rem);
+		}
+
+		.intro {
+			margin: 12px 0 28px;
+			color: var(--muted);
+			line-height: 1.6;
+		}
+
+		form {
+			display: flex;
+			flex-direction: column;
+			gap: 22px;
+		}
+
+		.goal-panel {
+			padding: 22px;
+			border: 1px solid #a5f3fc;
+			border-radius: 12px;
+			background: var(--accent-soft);
+		}
+
+		.control-heading {
+			display: flex;
+			align-items: baseline;
+			justify-content: space-between;
+			gap: 12px;
+			margin-bottom: 20px;
+		}
+
+		.control-heading label {
+			font-weight: 800;
+		}
+
+		.live-value {
+			color: var(--accent-dark);
+			font-size: 1.15rem;
+			font-weight: 800;
+		}
+
+		.range-row {
+			display: flex;
+			align-items: center;
+			gap: 14px;
+		}
+
+		input[type="range"] {
+			flex: 1;
+			width: 100%;
+			accent-color: var(--accent);
+			cursor: pointer;
+		}
+
+		.number-field {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+		}
+
+		input[type="number"] {
+			width: 78px;
+			padding: 9px 10px;
+			border: 1px solid #67e8f9;
+			border-radius: 8px;
+			background: #fff;
+			color: var(--ink);
+			font: inherit;
+			font-weight: 700;
+			text-align: center;
+		}
+
+		input[type="number"]:focus,
+		input[type="range"]:focus-visible {
+			outline: 3px solid rgba(8, 145, 178, 0.2);
+			outline-offset: 2px;
+		}
+
+		.unit-label {
+			color: var(--muted);
+			font-size: 0.88rem;
+		}
+
+		.scale {
+			display: flex;
+			justify-content: space-between;
+			margin-top: 8px;
+			color: var(--muted);
+			font-size: 0.75rem;
+		}
+
+		.field {
+			display: flex;
+			flex-direction: column;
+			gap: 7px;
+		}
+
+		.field label {
+			font-size: 0.9rem;
+			font-weight: 700;
+		}
+
+		input[type="text"],
+		select,
+		button {
+			width: 100%;
+			font: inherit;
+		}
+
+		input[type="text"],
+		select {
+			padding: 12px 13px;
+			border: 1px solid var(--line);
+			border-radius: 8px;
+			background: #f8fafc;
+			color: var(--ink);
+		}
+
+		input[type="text"]:focus,
+		select:focus {
+			outline: 3px solid rgba(8, 145, 178, 0.14);
+			border-color: var(--accent);
+			background: #fff;
+		}
+
+		button {
+			padding: 13px 20px;
+			border: 0;
+			border-radius: 9px;
+			background: var(--accent);
+			box-shadow: 0 9px 16px rgba(8, 145, 178, 0.22);
+			color: #fff;
+			cursor: pointer;
+			font-weight: 800;
+		}
+
+		button:hover {
+			background: var(--accent-dark);
+		}
+
+		@media (max-width: 480px) {
+			body {
+				padding: 14px;
+			}
+
+			.goal-panel {
+				padding: 18px 14px;
+			}
+
+			.control-heading {
+				align-items: flex-start;
+				flex-direction: column;
+			}
+		}
+	</style>
+</head>
+<body>
+	<main class="planner-card">
+		<p class="eyebrow">Personal planner</p>
+		<h1>Set your study goal</h1>
+		<p class="intro">Choose how much focused study time you want to complete each day.</p>
+
+		<form action="#" method="post">
+			<section class="goal-panel" aria-labelledby="hours-label">
+				<div class="control-heading">
+					<label id="hours-label" for="hours-range">Daily focus time</label>
+					<output class="live-value" id="hours-output" for="hours-range hours-number">4 hours</output>
+				</div>
+
+				<div class="range-row">
+					<input type="range" id="hours-range" name="hours_range" min="1" max="12" value="4">
+					<div class="number-field">
+						<input type="number" id="hours-number" name="hours" min="1" max="12" value="4" aria-label="Study hours">
+						<span class="unit-label">hours</span>
+					</div>
+				</div>
+				<div class="scale" aria-hidden="true"><span>1 hour</span><span>12 hours</span></div>
+			</section>
+
+			<div class="field">
+				<label for="break">Break length</label>
+				<select id="break" name="break">
+					<option value="5">5 minutes</option>
+					<option value="10" selected>10 minutes</option>
+					<option value="15">15 minutes</option>
+					<option value="20">20 minutes</option>
+				</select>
+			</div>
+
+			<div class="field">
+				<label for="goal-name">Goal name</label>
+				<input type="text" id="goal-name" name="goal_name" placeholder="e.g. Complete web design module">
+			</div>
+
+			<button type="submit">Save study goal</button>
+		</form>
+	</main>
+
+	<script>
+		const hoursRange = document.querySelector('#hours-range');
+		const hoursNumber = document.querySelector('#hours-number');
+		const hoursOutput = document.querySelector('#hours-output');
+
+		function updateHours(value) {
+			hoursRange.value = value;
+			hoursNumber.value = value;
+			hoursOutput.textContent = `${value} ${value === '1' ? 'hour' : 'hours'}`;
+		}
+
+		hoursRange.addEventListener('input', () => updateHours(hoursRange.value));
+		hoursNumber.addEventListener('input', () => updateHours(hoursNumber.value));
+	</script>
+</body>
+</html>

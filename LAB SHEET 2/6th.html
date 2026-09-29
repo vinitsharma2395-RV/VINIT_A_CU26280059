@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Login | LearnSpace</title>
+	<style>
+		:root {
+			--ink: #172033;
+			--muted: #6b7280;
+			--line: #d7dee8;
+			--primary: #7c3aed;
+			--primary-dark: #6d28d9;
+			--surface: #ffffff;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			min-height: 100vh;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin: 0;
+			padding: 24px;
+			background: linear-gradient(135deg, #f5f3ff, #eef2ff 55%, #e0f2fe);
+			color: var(--ink);
+			font-family: "Segoe UI", Tahoma, sans-serif;
+		}
+
+		.login-card {
+			position: relative;
+			overflow: hidden;
+			width: min(100%, 420px);
+			padding: 42px 36px 34px;
+			border: 1px solid rgba(255, 255, 255, 0.9);
+			border-radius: 18px;
+			background: var(--surface);
+			box-shadow: 0 22px 55px rgba(49, 46, 129, 0.17);
+		}
+
+		.card-orb {
+			position: absolute;
+			top: -65px;
+			right: -52px;
+			width: 160px;
+			height: 160px;
+			border-radius: 50%;
+			background: #ede9fe;
+		}
+
+		.status-badge {
+			position: absolute;
+			top: 22px;
+			right: 24px;
+			padding: 6px 10px;
+			border-radius: 999px;
+			background: #f5f3ff;
+			color: var(--primary);
+			font-size: 0.7rem;
+			font-weight: 800;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+		}
+
+		.eyebrow {
+			margin: 0 0 8px;
+			color: var(--primary);
+			font-size: 0.76rem;
+			font-weight: 800;
+			letter-spacing: 0.14em;
+			text-transform: uppercase;
+		}
+
+		h1 {
+			margin: 0;
+			color: #312e81;
+			font-size: 2rem;
+		}
+
+		.intro {
+			margin: 12px 0 28px;
+			color: var(--muted);
+			line-height: 1.55;
+		}
+
+		form {
+			display: flex;
+			flex-direction: column;
+			gap: 18px;
+		}
+
+		.field {
+			display: flex;
+			flex-direction: column;
+			gap: 7px;
+		}
+
+		label {
+			font-size: 0.9rem;
+			font-weight: 700;
+		}
+
+		input,
+		button {
+			width: 100%;
+			font: inherit;
+		}
+
+		input[type="email"],
+		input[type="password"] {
+			padding: 13px 14px;
+			border: 1px solid var(--line);
+			border-radius: 9px;
+			background: #f8fafc;
+			color: var(--ink);
+		}
+
+		input:focus {
+			outline: 3px solid rgba(124, 58, 237, 0.16);
+			border-color: var(--primary);
+			background: #fff;
+		}
+
+		.form-options {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 12px;
+			font-size: 0.84rem;
+		}
+
+		.remember {
+			display: flex;
+			align-items: center;
+			gap: 7px;
+			color: var(--muted);
+		}
+
+		.remember input {
+			width: auto;
+			accent-color: var(--primary);
+		}
+
+		a {
+			color: var(--primary);
+			font-weight: 700;
+			text-decoration: none;
+		}
+
+		a:hover {
+			text-decoration: underline;
+		}
+
+		button {
+			margin-top: 4px;
+			padding: 13px 16px;
+			border: 0;
+			border-radius: 9px;
+			background: var(--primary);
+			box-shadow: 0 9px 16px rgba(124, 58, 237, 0.25);
+			color: #fff;
+			cursor: pointer;
+			font-weight: 800;
+		}
+
+		button:hover {
+			background: var(--primary-dark);
+		}
+
+		.signup {
+			margin: 24px 0 0;
+			color: var(--muted);
+			font-size: 0.9rem;
+			text-align: center;
+		}
+
+		@media (max-width: 460px) {
+			body {
+				padding: 16px;
+			}
+
+			.login-card {
+				padding: 36px 22px 28px;
+			}
+
+			.status-badge {
+				right: 18px;
+			}
+		}
+	</style>
+</head>
+<body>
+	<main class="login-card">
+		<span class="card-orb" aria-hidden="true"></span>
+		<span class="status-badge">Member login</span>
+
+		<p class="eyebrow">LearnSpace</p>
+		<h1>Welcome back</h1>
+		<p class="intro">Sign in to access your lessons, assignments, and learning progress.</p>
+
+		<form action="#" method="post">
+			<div class="field">
+				<label for="email">Email address</label>
+				<input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+			</div>
+
+			<div class="field">
+				<label for="password">Password</label>
+				<input type="password" id="password" name="password" placeholder="Enter your password" autocomplete="current-password" required>
+			</div>
+
+			<div class="form-options">
+				<label class="remember" for="remember">
+					<input type="checkbox" id="remember" name="remember">
+					Remember me
+				</label>
+				<a href="#forgot-password">Forgot password?</a>
+			</div>
+
+			<button type="submit">Sign in</button>
+		</form>
+
+		<p class="signup">Don't have an account? <a href="#create-account">Create one</a></p>
+	</main>
+</body>
+</html>

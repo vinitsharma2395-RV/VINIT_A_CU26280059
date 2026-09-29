@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Checkout | StudyKit</title>
+	<style>
+		:root {
+			--ink: #172033;
+			--muted: #64748b;
+			--line: #d8e1ea;
+			--accent: #047857;
+			--accent-dark: #065f46;
+			--accent-soft: #ecfdf5;
+			--surface: #ffffff;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			min-height: 100vh;
+			margin: 0;
+			padding: 24px;
+			background: linear-gradient(135deg, #ecfdf5, #f8fafc 55%, #d1fae5);
+			color: var(--ink);
+			font-family: "Segoe UI", Tahoma, sans-serif;
+		}
+
+		.checkout-page {
+			width: min(100%, 980px);
+			margin: 0 auto;
+		}
+
+		.page-header {
+			margin-bottom: 24px;
+		}
+
+		.eyebrow {
+			margin: 0 0 8px;
+			color: var(--accent);
+			font-size: 0.76rem;
+			font-weight: 800;
+			letter-spacing: 0.13em;
+			text-transform: uppercase;
+		}
+
+		h1 {
+			margin: 0;
+			color: #064e3b;
+			font-size: clamp(1.8rem, 4vw, 2.6rem);
+		}
+
+		.page-header p:last-child {
+			margin: 10px 0 0;
+			color: var(--muted);
+		}
+
+		.checkout-layout {
+			display: grid;
+			grid-template-columns: minmax(0, 1.45fr) minmax(250px, 0.75fr);
+			gap: 22px;
+			align-items: start;
+		}
+
+		.payment-card,
+		.summary-card {
+			padding: clamp(22px, 4vw, 34px);
+			border: 1px solid #dbe4ed;
+			border-radius: 16px;
+			background: var(--surface);
+			box-shadow: 0 18px 42px rgba(6, 95, 70, 0.1);
+		}
+
+		.payment-card h2,
+		.summary-card h2 {
+			margin: 0 0 22px;
+			font-size: 1.25rem;
+		}
+
+		form {
+			display: flex;
+			flex-direction: column;
+			gap: 20px;
+		}
+
+		.field-grid {
+			display: grid;
+			grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+			gap: 17px;
+		}
+
+		.field {
+			display: flex;
+			flex-direction: column;
+			gap: 7px;
+			min-width: 0;
+		}
+
+		.full-width {
+			grid-column: 1 / -1;
+		}
+
+		label {
+			font-size: 0.88rem;
+			font-weight: 700;
+		}
+
+		input,
+		select,
+		button {
+			width: 100%;
+			font: inherit;
+		}
+
+		input,
+		select {
+			min-width: 0;
+			padding: 12px 13px;
+			border: 1px solid var(--line);
+			border-radius: 8px;
+			background: #f8fafc;
+			color: var(--ink);
+		}
+
+		input:focus,
+		select:focus {
+			outline: 3px solid rgba(4, 120, 87, 0.14);
+			border-color: var(--accent);
+			background: #fff;
+		}
+
+		.secure-note {
+			margin: -4px 0 0;
+			color: var(--muted);
+			font-size: 0.8rem;
+		}
+
+		.pay-button {
+			padding: 13px 18px;
+			border: 0;
+			border-radius: 8px;
+			background: var(--accent);
+			box-shadow: 0 9px 16px rgba(4, 120, 87, 0.2);
+			color: #fff;
+			cursor: pointer;
+			font-weight: 800;
+		}
+
+		.pay-button:hover {
+			background: var(--accent-dark);
+		}
+
+		.summary-card {
+			background: #f0fdf4;
+		}
+
+		.product {
+			display: flex;
+			align-items: flex-start;
+			justify-content: space-between;
+			gap: 16px;
+			padding-bottom: 18px;
+			border-bottom: 1px solid #bbf7d0;
+		}
+
+		.product strong,
+		.product span {
+			display: block;
+		}
+
+		.product span,
+		.price-row {
+			color: var(--muted);
+			font-size: 0.88rem;
+		}
+
+		.price-list {
+			display: flex;
+			flex-direction: column;
+			gap: 13px;
+			margin-top: 18px;
+		}
+
+		.price-row {
+			display: flex;
+			justify-content: space-between;
+			gap: 12px;
+		}
+
+		.total {
+			display: flex;
+			justify-content: space-between;
+			gap: 12px;
+			margin-top: 18px;
+			padding-top: 18px;
+			border-top: 1px solid #bbf7d0;
+			color: #064e3b;
+			font-size: 1.05rem;
+			font-weight: 800;
+		}
+
+		@media (max-width: 720px) {
+			body {
+				padding: 16px;
+			}
+
+			.checkout-layout {
+				grid-template-columns: 1fr;
+			}
+
+			.summary-card {
+				order: -1;
+			}
+		}
+
+		@media (max-width: 480px) {
+			.field-grid {
+				grid-template-columns: 1fr;
+			}
+
+			.full-width {
+				grid-column: auto;
+			}
+
+			.payment-card,
+			.summary-card {
+				padding: 22px 18px;
+			}
+		}
+	</style>
+</head>
+<body>
+	<main class="checkout-page">
+		<header class="page-header">
+			<p class="eyebrow">StudyKit checkout</p>
+			<h1>Complete your purchase</h1>
+			<p>Enter your payment details securely to finish your order.</p>
+		</header>
+
+		<div class="checkout-layout">
+			<section class="payment-card" aria-labelledby="payment-heading">
+				<h2 id="payment-heading">Payment details</h2>
+				<form action="#" method="post">
+					<div class="field-grid">
+						<div class="field full-width">
+							<label for="card-name">Name on card</label>
+							<input type="text" id="card-name" name="card_name" placeholder="Alex Student" autocomplete="cc-name" required>
+						</div>
+
+						<div class="field full-width">
+							<label for="card-number">Card number</label>
+							<input type="text" id="card-number" name="card_number" placeholder="1234 5678 9012 3456" inputmode="numeric" autocomplete="cc-number" required>
+						</div>
+
+						<div class="field">
+							<label for="expiry">Expiry date</label>
+							<input type="text" id="expiry" name="expiry" placeholder="MM / YY" inputmode="numeric" autocomplete="cc-exp" required>
+						</div>
+
+						<div class="field">
+							<label for="cvc">Security code</label>
+							<input type="text" id="cvc" name="cvc" placeholder="123" inputmode="numeric" autocomplete="cc-csc" required>
+						</div>
+
+						<div class="field full-width">
+							<label for="country">Billing country</label>
+							<select id="country" name="country" autocomplete="country-name" required>
+								<option value="" selected disabled>Select your country</option>
+								<option value="in">India</option>
+								<option value="us">United States</option>
+								<option value="gb">United Kingdom</option>
+								<option value="au">Australia</option>
+							</select>
+						</div>
+					</div>
+
+					<p class="secure-note">Your payment information is encrypted and securely processed.</p>
+					<button class="pay-button" type="submit">Pay $49.00</button>
+				</form>
+			</section>
+
+			<aside class="summary-card" aria-labelledby="summary-heading">
+				<h2 id="summary-heading">Order summary</h2>
+				<div class="product">
+					<div>
+						<strong>Design essentials</strong>
+						<span>Annual learning plan</span>
+					</div>
+					<strong>$45.00</strong>
+				</div>
+				<div class="price-list">
+					<div class="price-row"><span>Subtotal</span><span>$45.00</span></div>
+					<div class="price-row"><span>Tax</span><span>$4.00</span></div>
+				</div>
+				<div class="total"><span>Total</span><span>$49.00</span></div>
+			</aside>
+		</div>
+	</main>
+</body>
+</html>

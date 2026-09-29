@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Student Portal | Flexbox Layout</title>
+	<style>
+		:root {
+			--ink: #172033;
+			--muted: #64748b;
+			--line: #dbe4ed;
+			--surface: #ffffff;
+			--canvas: #f3f7fa;
+			--accent: #0f766e;
+			--accent-soft: #dff5ef;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			margin: 0;
+			min-height: 100vh;
+			background: var(--canvas);
+			color: var(--ink);
+			font-family: "Segoe UI", Tahoma, sans-serif;
+		}
+
+		.portal {
+			min-height: 100vh;
+			display: flex;
+			flex-direction: column;
+		}
+
+		.site-header {
+			min-height: 88px;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 24px;
+			padding: 18px clamp(20px, 5vw, 64px);
+			background: #132238;
+			color: #fff;
+		}
+
+		.brand {
+			display: flex;
+			align-items: center;
+			gap: 14px;
+		}
+
+		.brand-mark {
+			display: grid;
+			place-items: center;
+			width: 42px;
+			height: 42px;
+			border-radius: 12px;
+			background: #e7b85c;
+			color: #132238;
+			font-size: 1.2rem;
+			font-weight: 800;
+		}
+
+		.brand h1,
+		.brand p {
+			margin: 0;
+		}
+
+		.brand h1 {
+			font-size: 1.25rem;
+		}
+
+		.brand p {
+			margin-top: 3px;
+			color: #b9c7d6;
+			font-size: 0.84rem;
+		}
+
+		.profile {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			color: #d7e2ec;
+			font-size: 0.9rem;
+		}
+
+		.profile-avatar {
+			display: grid;
+			place-items: center;
+			width: 34px;
+			height: 34px;
+			border: 1px solid #5f7186;
+			border-radius: 50%;
+			font-weight: 700;
+		}
+
+		.portal-body {
+			flex: 1;
+			display: flex;
+			align-items: stretch;
+			min-height: 0;
+		}
+
+		.sidebar {
+			flex: 0 0 240px;
+			padding: 30px 20px;
+			border-right: 1px solid var(--line);
+			background: var(--surface);
+		}
+
+		.sidebar h2 {
+			margin: 0 0 18px;
+			color: var(--muted);
+			font-size: 0.75rem;
+			letter-spacing: 0.12em;
+			text-transform: uppercase;
+		}
+
+		.navigation {
+			display: flex;
+			flex-direction: column;
+			gap: 6px;
+		}
+
+		.navigation a {
+			padding: 11px 14px;
+			border-radius: 8px;
+			color: #405066;
+			font-weight: 600;
+			text-decoration: none;
+		}
+
+		.navigation a:hover,
+		.navigation a[aria-current="page"] {
+			background: var(--accent-soft);
+			color: var(--accent);
+		}
+
+		.main-content {
+			flex: 1;
+			min-width: 0;
+			padding: clamp(28px, 5vw, 64px);
+		}
+
+		.content-wrap {
+			max-width: 860px;
+			margin: 0 auto;
+		}
+
+		.eyebrow {
+			margin: 0 0 8px;
+			color: var(--accent);
+			font-size: 0.78rem;
+			font-weight: 800;
+			letter-spacing: 0.12em;
+			text-transform: uppercase;
+		}
+
+		.main-content h2 {
+			margin: 0;
+			font-size: clamp(2rem, 4vw, 3.4rem);
+			line-height: 1.05;
+		}
+
+		.lead {
+			max-width: 650px;
+			margin: 18px 0 34px;
+			color: var(--muted);
+			font-size: 1.08rem;
+			line-height: 1.7;
+		}
+
+		.overview {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 16px;
+		}
+
+		.overview-card {
+			flex: 1 1 190px;
+			min-height: 150px;
+			padding: 22px;
+			border: 1px solid var(--line);
+			border-radius: 12px;
+			background: var(--surface);
+			box-shadow: 0 12px 30px rgba(23, 32, 51, 0.06);
+		}
+
+		.overview-card strong {
+			display: block;
+			margin-bottom: 8px;
+			color: var(--accent);
+			font-size: 1.9rem;
+		}
+
+		.overview-card p {
+			margin: 0;
+			color: var(--muted);
+			line-height: 1.5;
+		}
+
+		@media (max-width: 680px) {
+			.site-header {
+				align-items: flex-start;
+				flex-direction: column;
+			}
+
+			.profile {
+				align-self: flex-end;
+			}
+
+			.portal-body {
+				flex-direction: column;
+			}
+
+			.sidebar {
+				flex-basis: auto;
+				padding: 20px;
+				border-right: 0;
+				border-bottom: 1px solid var(--line);
+			}
+
+			.navigation {
+				flex-direction: row;
+				flex-wrap: wrap;
+			}
+
+			.navigation a {
+				flex: 1 1 120px;
+				text-align: center;
+			}
+
+			.main-content {
+				padding: 32px 20px 44px;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="portal">
+		<header class="site-header">
+			<div class="brand">
+				<div class="brand-mark" aria-hidden="true">SP</div>
+				<div>
+					<h1>Student Portal</h1>
+					<p>A flexible campus workspace</p>
+				</div>
+			</div>
+			<div class="profile">
+				<span class="profile-avatar" aria-hidden="true">AS</span>
+				<span>Alex Student</span>
+			</div>
+		</header>
+
+		<div class="portal-body">
+			<aside class="sidebar" aria-label="Primary navigation">
+				<h2>Workspace</h2>
+				<nav class="navigation">
+					<a href="#overview" aria-current="page">Overview</a>
+					<a href="#courses">Courses</a>
+					<a href="#results">Results</a>
+					<a href="#profile">Profile</a>
+				</nav>
+			</aside>
+
+			<main class="main-content" id="overview">
+				<div class="content-wrap">
+					<p class="eyebrow">Flexbox layout</p>
+					<h2>Everything in one adaptable view.</h2>
+					<p class="lead">This page recreates a classic header, navigation, and content frame structure using semantic HTML and CSS Flexbox. The content area expands to use the available space and stacks naturally on smaller screens.</p>
+
+					<section class="overview" aria-label="Portal overview">
+						<article class="overview-card" id="courses">
+							<strong>04</strong>
+							<p>Active courses this semester</p>
+						</article>
+						<article class="overview-card" id="results">
+							<strong>86%</strong>
+							<p>Current average course progress</p>
+						</article>
+						<article class="overview-card" id="profile">
+							<strong>12</strong>
+							<p>Tasks waiting for your attention</p>
+						</article>
+					</section>
+				</div>
+			</main>
+		</div>
+	</div>
+</body>
+</html>
+

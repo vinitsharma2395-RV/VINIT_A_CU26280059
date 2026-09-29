@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Share Feedback</title>
+	<style>
+		:root {
+			--ink: #172033;
+			--muted: #64748b;
+			--line: #cbd5e1;
+			--focus: #0f766e;
+			--focus-tint: #ecfdf5;
+			--surface: #ffffff;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			min-height: 100vh;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin: 0;
+			padding: 24px;
+			background: linear-gradient(135deg, #ecfeff, #f8fafc 55%, #ccfbf1);
+			color: var(--ink);
+			font-family: "Segoe UI", Tahoma, sans-serif;
+		}
+
+		.feedback-card {
+			width: min(100%, 620px);
+			padding: clamp(26px, 5vw, 44px);
+			border: 1px solid #dbe4ed;
+			border-radius: 18px;
+			background: var(--surface);
+			box-shadow: 0 22px 55px rgba(15, 118, 110, 0.14);
+		}
+
+		.eyebrow {
+			margin: 0 0 8px;
+			color: var(--focus);
+			font-size: 0.76rem;
+			font-weight: 800;
+			letter-spacing: 0.13em;
+			text-transform: uppercase;
+		}
+
+		h1 {
+			margin: 0;
+			color: #134e4a;
+			font-size: clamp(1.8rem, 4vw, 2.5rem);
+		}
+
+		.intro {
+			margin: 12px 0 28px;
+			color: var(--muted);
+			line-height: 1.6;
+		}
+
+		form {
+			display: flex;
+			flex-direction: column;
+			gap: 18px;
+		}
+
+		.form-grid {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 18px;
+		}
+
+		.field {
+			display: flex;
+			flex-direction: column;
+			gap: 7px;
+		}
+
+		.full-width {
+			grid-column: 1 / -1;
+		}
+
+		label {
+			font-size: 0.9rem;
+			font-weight: 700;
+		}
+
+		input,
+		select,
+		textarea,
+		button {
+			font: inherit;
+		}
+
+		input,
+		select,
+		textarea {
+			width: 100%;
+			padding: 12px 13px;
+			border: 1px solid var(--line);
+			border-radius: 9px;
+			background: #f8fafc;
+			color: var(--ink);
+			transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+		}
+
+		input:focus,
+		select:focus,
+		textarea:focus {
+			outline: none;
+			border-color: var(--focus);
+			background: var(--focus-tint);
+			box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.14);
+		}
+
+		textarea {
+			min-height: 130px;
+			resize: vertical;
+		}
+
+		.rating-options {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 10px;
+		}
+
+		.rating-options label {
+			display: flex;
+			align-items: center;
+			gap: 6px;
+			padding: 9px 12px;
+			border: 1px solid var(--line);
+			border-radius: 8px;
+			color: var(--muted);
+			cursor: pointer;
+			font-weight: 600;
+		}
+
+		.rating-options input {
+			width: auto;
+			accent-color: var(--focus);
+		}
+
+		.rating-options label:has(input:checked) {
+			border-color: var(--focus);
+			background: var(--focus-tint);
+			color: var(--focus);
+		}
+
+		button {
+			align-self: flex-start;
+			padding: 13px 22px;
+			border: 0;
+			border-radius: 9px;
+			background: var(--focus);
+			box-shadow: 0 9px 16px rgba(15, 118, 110, 0.2);
+			color: #fff;
+			cursor: pointer;
+			font-weight: 800;
+		}
+
+		button:hover {
+			background: #115e59;
+		}
+
+		button:focus-visible {
+			outline: 3px solid rgba(15, 118, 110, 0.3);
+			outline-offset: 3px;
+		}
+
+		@media (max-width: 560px) {
+			body {
+				padding: 14px;
+			}
+
+			.form-grid {
+				grid-template-columns: 1fr;
+			}
+
+			.full-width {
+				grid-column: auto;
+			}
+
+			button {
+				width: 100%;
+			}
+		}
+	</style>
+</head>
+<body>
+	<main class="feedback-card">
+		<p class="eyebrow">Your voice matters</p>
+		<h1>Share your feedback</h1>
+		<p class="intro">Tell us what is working well and where we can make your experience better.</p>
+
+		<form action="#" method="post">
+			<div class="form-grid">
+				<div class="field">
+					<label for="name">Your name</label>
+					<input type="text" id="name" name="name" placeholder="Alex Student" required>
+				</div>
+
+				<div class="field">
+					<label for="email">Email address</label>
+					<input type="email" id="email" name="email" placeholder="you@example.com" required>
+				</div>
+
+				<div class="field full-width">
+					<label for="topic">Feedback topic</label>
+					<select id="topic" name="topic" required>
+						<option value="" selected disabled>Choose a topic</option>
+						<option value="courses">Courses</option>
+						<option value="support">Student support</option>
+						<option value="website">Website experience</option>
+					</select>
+				</div>
+
+				<fieldset class="field full-width">
+					<legend>How would you rate your experience?</legend>
+					<div class="rating-options">
+						<label><input type="radio" name="rating" value="excellent" required> Excellent</label>
+						<label><input type="radio" name="rating" value="good"> Good</label>
+						<label><input type="radio" name="rating" value="okay"> Okay</label>
+						<label><input type="radio" name="rating" value="poor"> Needs work</label>
+					</div>
+				</fieldset>
+
+				<div class="field full-width">
+					<label for="message">Your message</label>
+					<textarea id="message" name="message" placeholder="Share your thoughts..." required></textarea>
+				</div>
+			</div>
+
+			<button type="submit">Send feedback</button>
+		</form>
+	</main>
+</body>
+</html>

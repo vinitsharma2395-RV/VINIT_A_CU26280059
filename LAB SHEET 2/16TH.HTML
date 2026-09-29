@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Employee Evaluation</title>
+	<style>
+		:root {
+			--ink: #172033;
+			--muted: #64748b;
+			--line: #d8e1ea;
+			--accent: #b45309;
+			--accent-dark: #92400e;
+			--accent-soft: #fffbeb;
+			--surface: #ffffff;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			min-height: 100vh;
+			margin: 0;
+			padding: 24px;
+			background: linear-gradient(135deg, #fffbeb, #f8fafc 55%, #fef3c7);
+			color: var(--ink);
+			font-family: "Segoe UI", Tahoma, sans-serif;
+		}
+
+		.evaluation-card {
+			width: min(100%, 820px);
+			margin: 0 auto;
+			padding: clamp(26px, 5vw, 44px);
+			border: 1px solid #fde68a;
+			border-radius: 18px;
+			background: var(--surface);
+			box-shadow: 0 22px 55px rgba(180, 83, 9, 0.13);
+		}
+
+		.eyebrow {
+			margin: 0 0 8px;
+			color: var(--accent);
+			font-size: 0.76rem;
+			font-weight: 800;
+			letter-spacing: 0.13em;
+			text-transform: uppercase;
+		}
+
+		h1 {
+			margin: 0;
+			color: #78350f;
+			font-size: clamp(1.8rem, 4vw, 2.5rem);
+		}
+
+		.intro {
+			margin: 12px 0 28px;
+			color: var(--muted);
+			line-height: 1.6;
+		}
+
+		form {
+			display: flow-root;
+		}
+
+		.form-section {
+			display: flow-root;
+			margin: 0 0 24px;
+			padding: 22px 20px 6px;
+			border: 1px solid var(--line);
+			border-radius: 12px;
+			background: #fff;
+		}
+
+		.form-section h2 {
+			clear: both;
+			margin: 0 0 18px;
+			color: #92400e;
+			font-size: 1.08rem;
+		}
+
+		.field {
+			float: left;
+			width: calc(50% - 9px);
+			margin: 0 18px 18px 0;
+		}
+
+		.field:nth-of-type(odd) {
+			margin-right: 0;
+		}
+
+		.full-width {
+			clear: both;
+			float: none;
+			width: 100%;
+			margin-right: 0;
+		}
+
+		label {
+			display: block;
+			margin-bottom: 7px;
+			font-size: 0.9rem;
+			font-weight: 700;
+		}
+
+		input,
+		select,
+		textarea,
+		button {
+			font: inherit;
+		}
+
+		input,
+		select,
+		textarea {
+			width: 100%;
+			padding: 11px 12px;
+			border: 1px solid var(--line);
+			border-radius: 8px;
+			background: #f8fafc;
+			color: var(--ink);
+		}
+
+		input:focus,
+		select:focus,
+		textarea:focus {
+			outline: 3px solid rgba(180, 83, 9, 0.14);
+			border-color: var(--accent);
+			background: #fff;
+		}
+
+		textarea {
+			min-height: 110px;
+			resize: vertical;
+		}
+
+		.rating-list {
+			clear: both;
+			display: flex;
+			flex-wrap: wrap;
+			gap: 10px 18px;
+			padding-bottom: 13px;
+		}
+
+		.rating {
+			display: flex;
+			align-items: center;
+			gap: 7px;
+			color: var(--muted);
+			cursor: pointer;
+			font-weight: 600;
+		}
+
+		.rating input {
+			width: auto;
+			accent-color: var(--accent);
+		}
+
+		.actions {
+			clear: both;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 16px;
+		}
+
+		.note {
+			margin: 0;
+			color: var(--muted);
+			font-size: 0.84rem;
+		}
+
+		button {
+			padding: 13px 23px;
+			border: 0;
+			border-radius: 9px;
+			background: var(--accent);
+			box-shadow: 0 9px 16px rgba(180, 83, 9, 0.2);
+			color: #fff;
+			cursor: pointer;
+			font-weight: 800;
+		}
+
+		button:hover {
+			background: var(--accent-dark);
+		}
+
+		@media (max-width: 620px) {
+			body {
+				padding: 14px;
+			}
+
+			.field,
+			.field:nth-of-type(odd) {
+				clear: both;
+				float: none;
+				width: 100%;
+				margin-right: 0;
+			}
+
+			.actions {
+				align-items: stretch;
+				flex-direction: column;
+			}
+
+			button {
+				width: 100%;
+			}
+		}
+	</style>
+</head>
+<body>
+	<main class="evaluation-card">
+		<p class="eyebrow">People operations</p>
+		<h1>Employee evaluation</h1>
+		<p class="intro">Review progress, recognize strengths, and agree on meaningful goals for the next evaluation period.</p>
+
+		<form action="#" method="post">
+			<section class="form-section">
+				<h2>Employee details</h2>
+				<div class="field">
+					<label for="employee-name">Employee name</label>
+					<input type="text" id="employee-name" name="employee_name" placeholder="Jordan Lee" required>
+				</div>
+				<div class="field">
+					<label for="role">Role</label>
+					<input type="text" id="role" name="role" placeholder="Product designer" required>
+				</div>
+				<div class="field">
+					<label for="review-date">Review date</label>
+					<input type="date" id="review-date" name="review_date" required>
+				</div>
+				<div class="field">
+					<label for="reviewer">Reviewer</label>
+					<input type="text" id="reviewer" name="reviewer" placeholder="Manager name" required>
+				</div>
+			</section>
+
+			<section class="form-section">
+				<h2>Performance rating</h2>
+				<div class="rating-list">
+					<label class="rating"><input type="radio" name="rating" value="outstanding" required> Outstanding</label>
+					<label class="rating"><input type="radio" name="rating" value="strong"> Strong</label>
+					<label class="rating"><input type="radio" name="rating" value="developing"> Developing</label>
+					<label class="rating"><input type="radio" name="rating" value="needs-support"> Needs support</label>
+				</div>
+				<div class="field full-width">
+					<label for="achievements">Key achievements</label>
+					<textarea id="achievements" name="achievements" placeholder="Describe results and contributions..."></textarea>
+				</div>
+			</section>
+
+			<section class="form-section">
+				<h2>Development plan</h2>
+				<div class="field full-width">
+					<label for="goals">Goals for the next period</label>
+					<textarea id="goals" name="goals" placeholder="List the next priorities and growth goals..."></textarea>
+				</div>
+			</section>
+
+			<div class="actions">
+				<p class="note">Fields marked as required must be completed before submission.</p>
+				<button type="submit">Save evaluation</button>
+			</div>
+		</form>
+	</main>
+</body>
+</html>

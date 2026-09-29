@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Course Data Entry</title>
+	<style>
+		:root {
+			--ink: #172033;
+			--muted: #64748b;
+			--line: #d8e1ea;
+			--accent: #0369a1;
+			--accent-dark: #075985;
+			--stripe: #f0f9ff;
+			--hover: #bae6fd;
+			--surface: #ffffff;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			min-height: 100vh;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin: 0;
+			padding: 24px;
+			background: linear-gradient(135deg, #e0f2fe, #f8fafc 55%, #dbeafe);
+			color: var(--ink);
+			font-family: "Segoe UI", Tahoma, sans-serif;
+		}
+
+		.entry-card {
+			width: min(100%, 940px);
+			padding: clamp(24px, 5vw, 42px);
+			border: 1px solid #dbe4ed;
+			border-radius: 18px;
+			background: var(--surface);
+			box-shadow: 0 22px 55px rgba(3, 105, 161, 0.14);
+		}
+
+		.eyebrow {
+			margin: 0 0 8px;
+			color: var(--accent);
+			font-size: 0.76rem;
+			font-weight: 800;
+			letter-spacing: 0.13em;
+			text-transform: uppercase;
+		}
+
+		h1 {
+			margin: 0;
+			color: #0c4a6e;
+			font-size: clamp(1.8rem, 4vw, 2.5rem);
+		}
+
+		.intro {
+			margin: 12px 0 28px;
+			color: var(--muted);
+			line-height: 1.6;
+		}
+
+		form {
+			display: flex;
+			flex-direction: column;
+			gap: 22px;
+		}
+
+		.table-wrap {
+			overflow-x: auto;
+			border: 1px solid var(--line);
+			border-radius: 12px;
+		}
+
+		table {
+			width: 100%;
+			min-width: 680px;
+			border-collapse: collapse;
+			text-align: left;
+		}
+
+		caption {
+			padding: 16px 18px;
+			background: #f8fafc;
+			color: var(--muted);
+			font-size: 0.9rem;
+			text-align: left;
+		}
+
+		th,
+		td {
+			padding: 14px 16px;
+			border-bottom: 1px solid var(--line);
+			vertical-align: middle;
+		}
+
+		th {
+			background: #e0f2fe;
+			color: #0c4a6e;
+			font-size: 0.78rem;
+			letter-spacing: 0.05em;
+			text-transform: uppercase;
+		}
+
+		tbody tr:nth-child(even) {
+			background: var(--stripe);
+		}
+
+		tbody tr {
+			transition: background-color 0.2s ease, box-shadow 0.2s ease;
+		}
+
+		tbody tr:hover {
+			background: var(--hover);
+			box-shadow: inset 4px 0 0 var(--accent);
+		}
+
+		tbody tr:last-child td {
+			border-bottom: 0;
+		}
+
+		td:first-child {
+			color: var(--muted);
+			font-weight: 700;
+		}
+
+		input,
+		select,
+		button {
+			font: inherit;
+		}
+
+		input,
+		select {
+			width: 100%;
+			padding: 9px 10px;
+			border: 1px solid #cbd5e1;
+			border-radius: 7px;
+			background: #fff;
+			color: var(--ink);
+		}
+
+		input:focus,
+		select:focus {
+			outline: 3px solid rgba(3, 105, 161, 0.14);
+			border-color: var(--accent);
+		}
+
+		.actions {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 16px;
+		}
+
+		.hint {
+			margin: 0;
+			color: var(--muted);
+			font-size: 0.86rem;
+		}
+
+		button {
+			padding: 12px 22px;
+			border: 0;
+			border-radius: 8px;
+			background: var(--accent);
+			box-shadow: 0 8px 16px rgba(3, 105, 161, 0.2);
+			color: #fff;
+			cursor: pointer;
+			font-weight: 800;
+		}
+
+		button:hover {
+			background: var(--accent-dark);
+		}
+
+		@media (max-width: 620px) {
+			body {
+				padding: 14px;
+			}
+
+			.actions {
+				align-items: stretch;
+				flex-direction: column;
+			}
+
+			button {
+				width: 100%;
+			}
+		}
+	</style>
+</head>
+<body>
+	<main class="entry-card">
+		<p class="eyebrow">Academic records</p>
+		<h1>Course data entry</h1>
+		<p class="intro">Update the course details below. Each row is an editable record that can be reviewed before saving.</p>
+
+		<form action="#" method="post">
+			<div class="table-wrap">
+				<table>
+					<caption>Current semester course records</caption>
+					<thead>
+						<tr>
+							<th scope="col">No.</th>
+							<th scope="col">Course name</th>
+							<th scope="col">Instructor</th>
+							<th scope="col">Credits</th>
+							<th scope="col">Status</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>01</td>
+							<td><input type="text" name="course_1" value="Web Design" aria-label="Course name 1"></td>
+							<td><input type="text" name="instructor_1" value="M. Sharma" aria-label="Instructor 1"></td>
+							<td><input type="number" name="credits_1" value="4" min="1" max="6" aria-label="Credits 1"></td>
+							<td>
+								<select name="status_1" aria-label="Status 1">
+									<option selected>Active</option>
+									<option>Completed</option>
+									<option>Pending</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td>02</td>
+							<td><input type="text" name="course_2" value="Programming" aria-label="Course name 2"></td>
+							<td><input type="text" name="instructor_2" value="R. Patel" aria-label="Instructor 2"></td>
+							<td><input type="number" name="credits_2" value="5" min="1" max="6" aria-label="Credits 2"></td>
+							<td>
+								<select name="status_2" aria-label="Status 2">
+									<option selected>Active</option>
+									<option>Completed</option>
+									<option>Pending</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td>03</td>
+							<td><input type="text" name="course_3" value="Digital Media" aria-label="Course name 3"></td>
+							<td><input type="text" name="instructor_3" value="A. Khan" aria-label="Instructor 3"></td>
+							<td><input type="number" name="credits_3" value="3" min="1" max="6" aria-label="Credits 3"></td>
+							<td>
+								<select name="status_3" aria-label="Status 3">
+									<option>Active</option>
+									<option selected>Completed</option>
+									<option>Pending</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td>04</td>
+							<td><input type="text" name="course_4" value="User Experience" aria-label="Course name 4"></td>
+							<td><input type="text" name="instructor_4" value="N. Rao" aria-label="Instructor 4"></td>
+							<td><input type="number" name="credits_4" value="4" min="1" max="6" aria-label="Credits 4"></td>
+							<td>
+								<select name="status_4" aria-label="Status 4">
+									<option>Active</option>
+									<option>Completed</option>
+									<option selected>Pending</option>
+								</select>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="actions">
+				<p class="hint">Hover over a row to highlight the record you are editing.</p>
+				<button type="submit">Save course data</button>
+			</div>
+		</form>
+	</main>
+</body>
+</html>

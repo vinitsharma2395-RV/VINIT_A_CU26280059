@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Confirm Registration</title>
+	<style>
+		:root {
+			--ink: #172033;
+			--muted: #64748b;
+			--line: #d8e1ea;
+			--accent: #4338ca;
+			--accent-dark: #3730a3;
+			--accent-soft: #eef2ff;
+			--surface: #ffffff;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			min-height: 100vh;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin: 0;
+			padding: 24px;
+			background: linear-gradient(135deg, #eef2ff, #f8fafc 55%, #e0e7ff);
+			color: var(--ink);
+			font-family: "Segoe UI", Tahoma, sans-serif;
+		}
+
+		.session-card {
+			width: min(100%, 560px);
+			padding: clamp(26px, 5vw, 44px);
+			border: 1px solid #c7d2fe;
+			border-radius: 18px;
+			background: var(--surface);
+			box-shadow: 0 22px 55px rgba(67, 56, 202, 0.14);
+		}
+
+		.eyebrow {
+			margin: 0 0 8px;
+			color: var(--accent);
+			font-size: 0.76rem;
+			font-weight: 800;
+			letter-spacing: 0.13em;
+			text-transform: uppercase;
+		}
+
+		h1 {
+			margin: 0;
+			color: #312e81;
+			font-size: clamp(1.8rem, 4vw, 2.5rem);
+		}
+
+		.intro {
+			margin: 12px 0 28px;
+			color: var(--muted);
+			line-height: 1.6;
+		}
+
+		form {
+			display: flex;
+			flex-direction: column;
+			gap: 18px;
+		}
+
+		.field {
+			display: flex;
+			flex-direction: column;
+			gap: 7px;
+		}
+
+		label {
+			font-size: 0.9rem;
+			font-weight: 700;
+		}
+
+		input,
+		select,
+		button {
+			width: 100%;
+			font: inherit;
+		}
+
+		input,
+		select {
+			padding: 12px 13px;
+			border: 1px solid var(--line);
+			border-radius: 8px;
+			background: #f8fafc;
+			color: var(--ink);
+		}
+
+		input:focus,
+		select:focus {
+			outline: 3px solid rgba(67, 56, 202, 0.14);
+			border-color: var(--accent);
+			background: #fff;
+		}
+
+		.session-note {
+			margin: 2px 0 0;
+			padding: 13px 14px;
+			border-radius: 8px;
+			background: var(--accent-soft);
+			color: #3730a3;
+			font-size: 0.82rem;
+			line-height: 1.5;
+		}
+
+		button {
+			padding: 13px 20px;
+			border: 0;
+			border-radius: 9px;
+			background: var(--accent);
+			box-shadow: 0 9px 16px rgba(67, 56, 202, 0.22);
+			color: #fff;
+			cursor: pointer;
+			font-weight: 800;
+		}
+
+		button:hover {
+			background: var(--accent-dark);
+		}
+	</style>
+</head>
+<body>
+	<main class="session-card">
+		<p class="eyebrow">Student portal</p>
+		<h1>Confirm your registration</h1>
+		<p class="intro">Review your details before continuing. Session metadata is sent with this form for the server to validate.</p>
+
+		<form action="/registration/confirm" method="post">
+			<!-- These values are submitted with the form; the server must validate them. -->
+			<input type="hidden" name="session_id" value="session-2026-demo">
+			<input type="hidden" name="return_path" value="/registration/complete">
+			<input type="hidden" name="form_token" value="replace-with-server-generated-token">
+
+			<div class="field">
+				<label for="full-name">Full name</label>
+				<input type="text" id="full-name" name="full_name" autocomplete="name" placeholder="Alex Student" required>
+			</div>
+
+			<div class="field">
+				<label for="email">Email address</label>
+				<input type="email" id="email" name="email" autocomplete="email" placeholder="you@example.com" required>
+			</div>
+
+			<div class="field">
+				<label for="course">Selected course</label>
+				<select id="course" name="course" required>
+					<option value="" selected disabled>Choose a course</option>
+					<option value="web-design">Web Design</option>
+					<option value="programming">Programming</option>
+					<option value="digital-media">Digital Media</option>
+				</select>
+			</div>
+
+			<p class="session-note">Hidden fields carry session context with the request. Do not place passwords or other secrets in them; hidden values can be viewed and changed by the browser.</p>
+			<button type="submit">Confirm registration</button>
+		</form>
+	</main>
+</body>
+</html>

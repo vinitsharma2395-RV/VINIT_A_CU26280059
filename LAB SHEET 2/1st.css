@@ -1,0 +1,150 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #e0f2fe, #f8fafc, #e2e8f0);
+    font-family: Arial, Helvetica, sans-serif;
+    color: #1f2937;
+}
+
+.form-card {
+    width: min(100%, 520px);
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(8px);
+    border: 1px solid #dbeafe;
+    border-radius: 18px;
+    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+    padding: 32px 28px;
+}
+
+.eyebrow {
+    margin: 0 0 6px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #2563eb;
+}
+
+h1 {
+    margin: 0;
+    font-size: 2rem;
+    color: #0f172a;
+}
+
+.intro {
+    margin: 12px 0 24px;
+    color: #475569;
+    line-height: 1.5;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+label {
+    font-weight: 600;
+    color: #1e293b;
+}
+
+input, select, textarea, button {
+    font: inherit;
+}
+
+input[type="text"],
+input[type="password"],
+select,
+textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    background: #f8fafc;
+    color: #0f172a;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+    background: #fff;
+}
+
+fieldset {
+    border: 1px solid #dbeafe;
+    border-radius: 12px;
+    background: #f8fbff;
+    padding: 14px 16px 12px;
+    margin: 0;
+}
+
+legend {
+    padding: 0 8px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.option-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+    color: #334155;
+}
+
+.option input {
+    accent-color: #2563eb;
+}
+
+button {
+    border: none;
+    border-radius: 10px;
+    padding: 14px 18px;
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 10px 18px rgba(37, 99, 235, 0.25);
+}
+
+button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 14px 22px rgba(37, 99, 235, 0.3);
+}
+
+@media (max-width: 560px) {
+    .form-card {
+        padding: 24px 18px;
+        margin: 16px;
+    }
+
+    h1 {
+        font-size: 1.6rem;
+    }
+}

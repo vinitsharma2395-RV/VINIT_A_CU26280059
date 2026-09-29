@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Registration Form</title>
+	<link rel="stylesheet" href="1st.css">
+</head>
+<body>
+	<main class="form-card">
+		<p class="eyebrow">Student portal</p>
+		<h1>Registration Form</h1>
+		<p class="intro">Complete the details below to create your account.</p>
+
+		<form action="#" method="post">
+			<div class="field-group">
+				<label for="full-name">Full name</label>
+				<input type="text" id="full-name" name="full_name" placeholder="Enter your full name" required>
+			</div>
+
+			<div class="field-group">
+				<label for="password">Password</label>
+				<input type="password" id="password" name="password" placeholder="Create a password" minlength="8" required>
+			</div>
+
+			<fieldset>
+				<legend>Year of study</legend>
+				<div class="option-list">
+					<label class="option"><input type="radio" name="year" value="first" required> First year</label>
+					<label class="option"><input type="radio" name="year" value="second"> Second year</label>
+					<label class="option"><input type="radio" name="year" value="third"> Third year</label>
+				</div>
+			</fieldset>
+
+			<fieldset>
+				<legend>Areas of interest</legend>
+				<div class="option-list">
+					<label class="option"><input type="checkbox" name="interests" value="web-design"> Web design</label>
+					<label class="option"><input type="checkbox" name="interests" value="programming"> Programming</label>
+					<label class="option"><input type="checkbox" name="interests" value="photography"> Photography</label>
+				</div>
+			</fieldset>
+
+			<div class="field-group">
+				<label for="course">Preferred course</label>
+				<select id="course" name="course" required>
+					<option value="" selected disabled>Select a course</option>
+					<option value="computer-science">Computer Science</option>
+					<option value="information-technology">Information Technology</option>
+					<option value="digital-media">Digital Media</option>
+				</select>
+			</div>
+
+			<div class="field-group">
+				<label for="message">About you</label>
+				<textarea id="message" name="message" rows="5" placeholder="Tell us a little about yourself"></textarea>
+			</div>
+
+			<button type="submit">Create account</button>
+		</form>
+	</main>
+</body>
+</html>

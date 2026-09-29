@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Registration Form</title>
+	<style>
+		:root {
+			--ink: #18212f;
+			--muted: #64748b;
+			--line: #d5dee8;
+			--accent: #166534;
+			--accent-dark: #14532d;
+			--accent-soft: #f0fdf4;
+			--surface: #ffffff;
+			--body-font: "Segoe UI", Tahoma, sans-serif;
+			--display-font: Georgia, "Times New Roman", serif;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			min-height: 100vh;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin: 0;
+			padding: 24px;
+			background: linear-gradient(135deg, #f0fdf4, #f8fafc 55%, #dcfce7);
+			color: var(--ink);
+			font-family: var(--body-font);
+			line-height: 1.6;
+		}
+
+		.registration-card {
+			width: min(100%, 650px);
+			padding: clamp(26px, 5vw, 44px);
+			border: 1px solid #bbf7d0;
+			border-radius: 18px;
+			background: var(--surface);
+			box-shadow: 0 22px 55px rgba(20, 83, 45, 0.13);
+		}
+
+		.eyebrow {
+			margin: 0 0 8px;
+			color: var(--accent);
+			font-family: var(--body-font);
+			font-size: 0.74rem;
+			font-weight: 800;
+			letter-spacing: 0.16em;
+			line-height: 1.3;
+			text-transform: uppercase;
+		}
+
+		h1 {
+			margin: 0;
+			color: #14532d;
+			font-family: var(--display-font);
+			font-size: clamp(2rem, 4vw, 2.8rem);
+			font-weight: 700;
+			letter-spacing: 0.01em;
+			line-height: 1.12;
+			text-transform: none;
+		}
+
+		.intro {
+			margin: 12px 0 28px;
+			color: var(--muted);
+			font-family: var(--body-font);
+			font-size: 0.98rem;
+			letter-spacing: 0.01em;
+			line-height: 1.7;
+		}
+
+		form {
+			display: flex;
+			flex-direction: column;
+			gap: 18px;
+		}
+
+		.form-grid {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 18px;
+		}
+
+		.field {
+			display: flex;
+			flex-direction: column;
+			gap: 7px;
+		}
+
+		.full-width {
+			grid-column: 1 / -1;
+		}
+
+		label,
+		legend {
+			color: #26352c;
+			font-family: var(--body-font);
+			font-size: 0.82rem;
+			font-weight: 800;
+			letter-spacing: 0.08em;
+			line-height: 1.4;
+			text-transform: uppercase;
+		}
+
+		input,
+		select,
+		textarea,
+		button {
+			font-family: var(--body-font);
+			font-size: 0.95rem;
+			line-height: 1.5;
+		}
+
+		input,
+		select,
+		textarea {
+			width: 100%;
+			padding: 12px 13px;
+			border: 1px solid var(--line);
+			border-radius: 8px;
+			background: #f8fafc;
+			color: var(--ink);
+			letter-spacing: 0.015em;
+		}
+
+		input::placeholder,
+		textarea::placeholder {
+			color: #94a3b8;
+			font-family: var(--body-font);
+			font-size: 0.9rem;
+			font-style: italic;
+			letter-spacing: 0.025em;
+			line-height: 1.5;
+			text-transform: none;
+		}
+
+		input:focus,
+		select:focus,
+		textarea:focus {
+			outline: 3px solid rgba(22, 101, 52, 0.14);
+			border-color: var(--accent);
+			background: #fff;
+		}
+
+		fieldset {
+			margin: 0;
+			padding: 17px 18px 15px;
+			border: 1px solid #d1fae5;
+			border-radius: 10px;
+			background: var(--accent-soft);
+		}
+
+		legend {
+			padding: 0 8px;
+			color: var(--accent);
+		}
+
+		.option-list {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 10px 18px;
+			margin-top: 4px;
+		}
+
+		.option {
+			display: flex;
+			align-items: center;
+			gap: 7px;
+			color: var(--muted);
+			cursor: pointer;
+			font-family: var(--body-font);
+			font-size: 0.88rem;
+			font-weight: 600;
+			letter-spacing: 0.015em;
+			line-height: 1.5;
+			text-transform: none;
+		}
+
+		.option input {
+			width: auto;
+			accent-color: var(--accent);
+		}
+
+		.helper {
+			margin: -5px 0 0;
+			color: var(--muted);
+			font-family: var(--body-font);
+			font-size: 0.8rem;
+			letter-spacing: 0.02em;
+			line-height: 1.5;
+		}
+
+		button {
+			align-self: flex-start;
+			padding: 13px 23px;
+			border: 0;
+			border-radius: 9px;
+			background: var(--accent);
+			box-shadow: 0 9px 16px rgba(22, 101, 52, 0.2);
+			color: #fff;
+			cursor: pointer;
+			font-weight: 800;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+		}
+
+		button:hover {
+			background: var(--accent-dark);
+		}
+
+		@media (max-width: 560px) {
+			body {
+				padding: 14px;
+			}
+
+			.form-grid {
+				grid-template-columns: 1fr;
+			}
+
+			.full-width {
+				grid-column: auto;
+			}
+
+			button {
+				width: 100%;
+			}
+		}
+	</style>
+</head>
+<body>
+	<main class="registration-card">
+		<p class="eyebrow">Member registration</p>
+		<h1>Begin your learning journey</h1>
+		<p class="intro">Create your profile to access courses, track progress, and join the student community.</p>
+
+		<form action="#" method="post">
+			<div class="form-grid">
+				<div class="field full-width">
+					<label for="full-name">Full name</label>
+					<input type="text" id="full-name" name="full_name" placeholder="e.g. Alex Student" autocomplete="name" required>
+				</div>
+
+				<div class="field">
+					<label for="email">Email address</label>
+					<input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+				</div>
+
+				<div class="field">
+					<label for="phone">Phone number</label>
+					<input type="tel" id="phone" name="phone" placeholder="9876543210" autocomplete="tel" required>
+				</div>
+
+				<div class="field">
+					<label for="course">Preferred course</label>
+					<select id="course" name="course" required>
+						<option value="" selected disabled>Choose a course</option>
+						<option value="web-design">Web design</option>
+						<option value="programming">Programming</option>
+						<option value="digital-media">Digital media</option>
+					</select>
+				</div>
+
+				<div class="field">
+					<label for="password">Create password</label>
+					<input type="password" id="password" name="password" placeholder="At least 8 characters" minlength="8" autocomplete="new-password" required>
+				</div>
+			</div>
+
+			<fieldset>
+				<legend>Study preference</legend>
+				<div class="option-list">
+					<label class="option"><input type="radio" name="preference" value="online" required> Online learning</label>
+					<label class="option"><input type="radio" name="preference" value="campus"> Campus sessions</label>
+					<label class="option"><input type="radio" name="preference" value="hybrid"> Hybrid learning</label>
+				</div>
+			</fieldset>
+
+			<p class="helper">Your details are used to create and personalize your student profile.</p>
+			<button type="submit">Create account</button>
+		</form>
+	</main>
+</body>
+</html>

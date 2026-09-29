@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Student Registration</title>
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			margin: 0;
+			padding: 30px 15px;
+			background: #f2f6f8;
+			font-family: Arial, sans-serif;
+		}
+
+		.registration-shell {
+			max-width: 700px;
+			margin: auto;
+			background: white;
+			border: 1px solid #d6dee3;
+			border-radius: 8px;
+		}
+
+		.intro-panel {
+			padding: 25px;
+			color: white;
+			background: #24495c;
+			border-radius: 8px 8px 0 0;
+		}
+
+		h1,
+		h2 {
+			margin-top: 0;
+		}
+
+		.eyebrow {
+			font-size: 13px;
+			font-weight: bold;
+			text-transform: uppercase;
+		}
+
+		.form-panel {
+			padding: 25px;
+		}
+
+		.form-grid {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 18px;
+		}
+
+		.field {
+			display: flex;
+			flex-direction: column;
+			gap: 6px;
+		}
+
+		.full-width {
+			grid-column: 1 / 3;
+		}
+
+		label {
+			font-weight: bold;
+		}
+
+		label span {
+			color: #d04444;
+		}
+
+		input,
+		select,
+		textarea {
+			width: 100%;
+			padding: 10px;
+			border: 1px solid #b9c5cc;
+			border-radius: 4px;
+			font: inherit;
+		}
+
+		input:focus,
+		select:focus,
+		textarea:focus {
+			outline: 2px solid #79aeca;
+		}
+
+		textarea {
+			resize: vertical;
+		}
+
+		small {
+			color: #667781;
+		}
+
+		button {
+			width: 100%;
+			padding: 12px;
+			color: white;
+			background: #247a65;
+			border: 0;
+			border-radius: 4px;
+			cursor: pointer;
+			font-size: 16px;
+			font-weight: bold;
+		}
+
+		button:hover {
+			background: #1b5f4f;
+		}
+
+		@media (max-width: 600px) {
+			.form-grid {
+				grid-template-columns: 1fr;
+			}
+
+			.full-width {
+				grid-column: 1;
+			}
+		}
+	</style>
+</head>
+<body>
+	<main class="registration-shell">
+		<section class="intro-panel">
+			<p class="eyebrow">Campus admissions</p>
+			<h1>Start your student journey.</h1>
+			<p>Register your details below. Fields marked with an asterisk are required.</p>
+		</section>
+
+		<section class="form-panel">
+			<h2>Student registration</h2>
+			<p class="form-note">Use accurate details so we can create your student profile.</p>
+
+			<form action="#" method="post">
+				<div class="form-grid">
+					<div class="field full-width">
+						<label for="full-name">Full name <span>*</span></label>
+						<input type="text" id="full-name" name="full_name" required minlength="3" maxlength="60" placeholder="e.g. Ananya Sharma">
+					</div>
+
+					<div class="field">
+						<label for="email">Email address <span>*</span></label>
+						<input type="email" id="email" name="email" required maxlength="100" placeholder="you@example.com">
+					</div>
+
+					<div class="field">
+						<label for="student-id">Student ID <span>*</span></label>
+						<input type="text" id="student-id" name="student_id" required pattern="[A-Z]{2}[0-9]{4}" title="Use two capital letters followed by four digits, for example CS1024" placeholder="CS1024">
+					</div>
+
+					<div class="field">
+						<label for="phone">Phone number <span>*</span></label>
+						<input type="tel" id="phone" name="phone" required pattern="[0-9]{10}" title="Enter a 10-digit phone number" placeholder="9876543210">
+					</div>
+
+					<div class="field">
+						<label for="course">Course <span>*</span></label>
+						<select id="course" name="course" required>
+							<option value="" selected disabled>Choose a course</option>
+							<option value="computer-science">Computer Science</option>
+							<option value="business-administration">Business Administration</option>
+							<option value="media-studies">Media Studies</option>
+							<option value="design">Design</option>
+						</select>
+					</div>
+
+					<div class="field">
+						<label for="birth-date">Date of birth <span>*</span></label>
+						<input type="date" id="birth-date" name="birth_date" required>
+					</div>
+
+					<div class="field full-width">
+						<label for="address">Address</label>
+						<textarea id="address" name="address" rows="4" maxlength="200" placeholder="Enter your current address"></textarea>
+						<small>Maximum 200 characters</small>
+					</div>
+				</div>
+
+				<button type="submit">Submit registration</button>
+			</form>
+		</section>
+	</main>
+</body>
+</html>

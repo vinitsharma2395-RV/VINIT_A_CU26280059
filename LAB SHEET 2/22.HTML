@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Newsletter Subscription</title>
+	<style>
+		:root {
+			--ink: #172033;
+			--muted: #64748b;
+			--line: #cbd5e1;
+			--accent: #0f766e;
+			--accent-dark: #115e59;
+			--accent-soft: #ccfbf1;
+			--surface: #ffffff;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			min-height: 100vh;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin: 0;
+			padding: 24px;
+			background: linear-gradient(135deg, #ccfbf1, #f8fafc 55%, #d1fae5);
+			color: var(--ink);
+			font-family: "Segoe UI", Tahoma, sans-serif;
+		}
+
+		.newsletter-card {
+			width: min(100%, 620px);
+			padding: clamp(28px, 5vw, 46px);
+			border: 1px solid #99f6e4;
+			border-radius: 18px;
+			background: var(--surface);
+			box-shadow: 0 22px 55px rgba(15, 118, 110, 0.15);
+			text-align: center;
+		}
+
+		.icon {
+			display: grid;
+			width: 48px;
+			height: 48px;
+			place-items: center;
+			margin: 0 auto 18px;
+			border-radius: 14px;
+			background: var(--accent-soft);
+			color: var(--accent);
+			font-size: 1.35rem;
+		}
+
+		.eyebrow {
+			margin: 0 0 8px;
+			color: var(--accent);
+			font-size: 0.75rem;
+			font-weight: 800;
+			letter-spacing: 0.14em;
+			text-transform: uppercase;
+		}
+
+		h1 {
+			margin: 0;
+			color: #134e4a;
+			font-size: clamp(1.8rem, 4vw, 2.5rem);
+		}
+
+		.intro {
+			max-width: 470px;
+			margin: 12px auto 28px;
+			color: var(--muted);
+			line-height: 1.6;
+		}
+
+		.newsletter-form {
+			display: flex;
+			align-items: stretch;
+			gap: 10px;
+			text-align: left;
+		}
+
+		.field {
+			position: relative;
+			flex: 1;
+			min-width: 0;
+		}
+
+		.field input {
+			width: 100%;
+			padding: 17px 14px 8px;
+			border: 1px solid var(--line);
+			border-radius: 9px;
+			background: #f8fafc;
+			color: var(--ink);
+			font: inherit;
+		}
+
+		.field label {
+			position: absolute;
+			top: 14px;
+			left: 14px;
+			color: var(--muted);
+			cursor: text;
+			font-size: 0.95rem;
+			line-height: 1;
+			pointer-events: none;
+			transition: top 0.2s ease, left 0.2s ease, color 0.2s ease, font-size 0.2s ease;
+		}
+
+		.field input::placeholder {
+			color: transparent;
+		}
+
+		.field input:focus {
+			outline: 3px solid rgba(15, 118, 110, 0.14);
+			border-color: var(--accent);
+			background: #fff;
+		}
+
+		.field input:focus ~ label,
+		.field input:not(:placeholder-shown) ~ label {
+			top: 6px;
+			left: 12px;
+			color: var(--accent);
+			font-size: 0.68rem;
+			font-weight: 800;
+		}
+
+		button {
+			flex: 0 0 auto;
+			padding: 0 20px;
+			border: 0;
+			border-radius: 9px;
+			background: var(--accent);
+			box-shadow: 0 9px 16px rgba(15, 118, 110, 0.2);
+			color: #fff;
+			cursor: pointer;
+			font: inherit;
+			font-weight: 800;
+		}
+
+		button:hover {
+			background: var(--accent-dark);
+		}
+
+		.privacy-note {
+			margin: 18px 0 0;
+			color: var(--muted);
+			font-size: 0.78rem;
+		}
+
+		@media (max-width: 520px) {
+			body {
+				padding: 14px;
+			}
+
+			.newsletter-form {
+				flex-direction: column;
+			}
+
+			button {
+				min-height: 48px;
+			}
+		}
+	</style>
+</head>
+<body>
+	<main class="newsletter-card">
+		<div class="icon" aria-hidden="true">&#9993;</div>
+		<p class="eyebrow">The weekly edit</p>
+		<h1>Stay in the loop</h1>
+		<p class="intro">Get practical ideas, fresh resources, and thoughtful updates delivered to your inbox once a week.</p>
+
+		<form class="newsletter-form" action="#" method="post">
+			<div class="field">
+				<input type="email" id="newsletter-email" name="email" placeholder="Email address" autocomplete="email" required>
+				<label for="newsletter-email">Email address</label>
+			</div>
+			<button type="submit">Subscribe</button>
+		</form>
+
+		<p class="privacy-note">No clutter, no daily alerts. Unsubscribe whenever you like.</p>
+	</main>
+</body>
+</html>

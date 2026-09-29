@@ -1,0 +1,145 @@
+:root {
+  --ink: #172033;
+  --muted: #64748b;
+  --line: #d6dee8;
+  --accent: #2563eb;
+  --surface: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 24px;
+  background: linear-gradient(135deg, #eff6ff, #f8fafc 55%, #dbeafe);
+  color: var(--ink);
+  font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+.contact-card {
+  width: min(100%, 640px);
+  padding: clamp(26px, 5vw, 44px);
+  border: 1px solid #dbe4ed;
+  border-radius: 18px;
+  background: var(--surface);
+  box-shadow: 0 22px 55px rgba(37, 99, 235, 0.14);
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: var(--accent);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.form-title {
+  margin: 0;
+  color: #1e3a8a;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+}
+
+.intro {
+  margin: 12px 0 28px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+label {
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+input,
+select,
+textarea,
+button {
+  font: inherit;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 12px 13px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #f8fafc;
+  color: var(--ink);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 3px solid rgba(37, 99, 235, 0.14);
+  border-color: var(--accent);
+  background: #fff;
+}
+
+textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+.submit-button {
+  align-self: flex-start;
+  padding: 13px 23px;
+  border: 0;
+  border-radius: 9px;
+  background: var(--accent);
+  box-shadow: 0 9px 16px rgba(37, 99, 235, 0.22);
+  color: #fff;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.submit-button:hover {
+  background: #1d4ed8;
+}
+
+@media (max-width: 560px) {
+  body {
+    padding: 14px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .full-width {
+    grid-column: auto;
+  }
+
+  .submit-button {
+    width: 100%;
+  }
+}
