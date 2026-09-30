@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Student Grade Calculator</title>
+</head>
+<body>
+	<h1>Student Grade Calculator</h1>
+
+	<label for="marks">Enter marks (0-100):</label>
+	<input type="number" id="marks" min="0" max="100" step="1">
+	<button type="button" onclick="calculateGrade()">Calculate Grade</button>
+
+	<div id="result"></div>
+
+	<script>
+		function calculateGrade() {
+			const marksInput = document.getElementById("marks").value;
+			const marks = Number(marksInput);
+			const result = document.getElementById("result");
+
+			if (marksInput === "" || !Number.isInteger(marks) || marks < 0 || marks > 100) {
+				result.textContent = "Please enter whole-number marks between 0 and 100.";
+				return;
+			}
+
+			let grade;
+			if (marks >= 90) {
+				grade = "A";
+			} else if (marks >= 80) {
+				grade = "B";
+			} else if (marks >= 70) {
+				grade = "C";
+			} else if (marks >= 60) {
+				grade = "D";
+			} else {
+				grade = "F";
+			}
+
+			let message;
+			switch (grade) {
+				case "A":
+					message = "Excellent performance.";
+					break;
+				case "B":
+					message = "Very good performance.";
+					break;
+				case "C":
+					message = "Good performance.";
+					break;
+				case "D":
+					message = "You passed.";
+					break;
+				default:
+					message = "You need to improve.";
+			}
+
+			result.textContent = `Marks: ${marks} | Grade: ${grade} | ${message}`;
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Exercise 19 — Keyboard Events</title>
+	<style>
+		body { max-width: 700px; margin: 3rem auto; padding: 0 1rem; font-family: Arial, sans-serif; }
+		.result { margin: 1rem 0; padding: 1rem; border-radius: 6px; background: #eef4f7; }
+	</style>
+</head>
+<body>
+	<main>
+		<h1>19. Keyboard Events</h1>
+		<p>Press and release any key to display its character and code.</p>
+		<p class="result" id="keydownResult" aria-live="polite">keydown: waiting for a key</p>
+		<p class="result" id="keyupResult" aria-live="polite">keyup: waiting for a key</p>
+	</main>
+	<script>
+		function describeKey(event) {
+			const key = event.key === " " ? "Space" : event.key;
+			return `key: ${key} | code: ${event.code}`;
+		}
+
+		document.addEventListener("keydown", function (event) {
+			document.getElementById("keydownResult").textContent = `keydown — ${describeKey(event)}`;
+		});
+
+		document.addEventListener("keyup", function (event) {
+			document.getElementById("keyupResult").textContent = `keyup — ${describeKey(event)}`;
+		});
+	</script>
+</body>
+</html>

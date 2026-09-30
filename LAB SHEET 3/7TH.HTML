@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Student Object</title>
+</head>
+<body>
+	<h1>Student Object</h1>
+
+	<label for="studentName">Name:</label>
+	<input type="text" id="studentName" value="Aarav Sharma">
+
+	<label for="studentRoll">Roll number:</label>
+	<input type="text" id="studentRoll" value="101">
+
+	<label for="studentMarks">Marks (comma-separated):</label>
+	<input type="text" id="studentMarks" value="85, 90, 78">
+
+	<button type="button" onclick="showStudent()">Show Student</button>
+	<div id="studentOutput"></div>
+
+	<script>
+		const student = {
+			name: "",
+			rollNumber: "",
+			marks: [],
+
+			calculateAverage: function () {
+				const total = this.marks.reduce((sum, mark) => sum + mark, 0);
+				return total / this.marks.length;
+			},
+
+			getDetails: function () {
+				return `Name: ${this.name}<br>`
+					+ `Roll number: ${this.rollNumber}<br>`
+					+ `Marks: ${this.marks.join(", ")}<br>`
+					+ `Average: ${this.calculateAverage().toFixed(2)}`;
+			}
+		};
+
+		function showStudent() {
+			const name = document.getElementById("studentName").value.trim();
+			const rollNumber = document.getElementById("studentRoll").value.trim();
+			const marks = document.getElementById("studentMarks").value
+				.split(",")
+				.map((mark) => Number(mark.trim()));
+			const output = document.getElementById("studentOutput");
+
+			if (!name || !rollNumber || marks.length === 0 || marks.some((mark) => !Number.isFinite(mark))) {
+				output.textContent = "Please enter valid student details and marks.";
+				return;
+			}
+
+			student.name = name;
+			student.rollNumber = rollNumber;
+			student.marks = marks;
+			output.innerHTML = student.getDetails();
+		}
+	</script>
+</body>
+</html>

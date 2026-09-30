@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Arithmetic Operations</title>
+</head>
+<body>
+	<h1>Arithmetic Operations</h1>
+
+	<script>
+		const firstNumber = Number(prompt("Enter the first number:"));
+		const secondNumber = Number(prompt("Enter the second number:"));
+
+		const results = {
+			Addition: firstNumber + secondNumber,
+			Subtraction: firstNumber - secondNumber,
+			Multiplication: firstNumber * secondNumber,
+			Division: secondNumber !== 0 ? firstNumber / secondNumber : "Cannot divide by zero"
+		};
+
+		const output = Object.entries(results)
+			.map(([operation, result]) => `${operation}: ${result}`)
+			.join("\n");
+
+		console.log(output);
+		alert(output);
+	</script>
+</body>
+</html>

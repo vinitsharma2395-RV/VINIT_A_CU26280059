@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Mouse Events</title>
+	<style>
+		#colorBox {
+			padding: 3rem;
+			background-color: lightblue;
+			text-align: center;
+			transition: background-color 0.2s ease;
+		}
+	</style>
+</head>
+<body>
+	<h1>Change the background color</h1>
+	<div id="colorBox">Move your mouse over this box</div>
+
+	<script>
+		const colorBox = document.getElementById("colorBox");
+
+		colorBox.addEventListener("mouseover", function () {
+			colorBox.style.backgroundColor = "lightgreen";
+		});
+
+		colorBox.addEventListener("mouseout", function () {
+			colorBox.style.backgroundColor = "lightblue";
+		});
+	</script>
+</body>
+</html>

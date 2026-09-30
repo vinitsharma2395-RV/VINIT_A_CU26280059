@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Exercise 18 — Todo List</title>
+	<style>
+		body { max-width: 600px; margin: 3rem auto; padding: 0 1rem; font-family: Arial, sans-serif; }
+		input { box-sizing: border-box; width: 100%; padding: 0.6rem; }
+		button { margin: 0.7rem 0.3rem 0 0; padding: 0.45rem 0.7rem; cursor: pointer; }
+		li { margin: 0.7rem 0; }
+		.delete-button { margin: 0 0 0 0.5rem; background: #a53030; color: white; border: 0; border-radius: 4px; }
+	</style>
+</head>
+<body>
+	<main>
+		<h1>18. Todo List</h1>
+		<form id="todoForm">
+			<label for="taskInput">New task</label>
+			<input id="taskInput" autocomplete="off" required>
+			<button type="submit">Add task</button>
+		</form>
+		<ul id="todoList"></ul>
+		<p id="message" role="status" aria-live="polite"></p>
+	</main>
+	<script>
+		const todoForm = document.getElementById("todoForm");
+		const taskInput = document.getElementById("taskInput");
+		const todoList = document.getElementById("todoList");
+		const message = document.getElementById("message");
+
+		todoForm.addEventListener("submit", function (event) {
+			event.preventDefault();
+			const taskText = taskInput.value.trim();
+			if (!taskText) {
+				message.textContent = "Enter a task before adding it.";
+				return;
+			}
+
+			const item = document.createElement("li");
+			const task = document.createElement("span");
+			const deleteButton = document.createElement("button");
+			task.textContent = taskText;
+			deleteButton.type = "button";
+			deleteButton.className = "delete-button";
+			deleteButton.textContent = "Delete";
+			deleteButton.setAttribute("aria-label", `Delete task: ${taskText}`);
+			item.append(task, deleteButton);
+			todoList.appendChild(item);
+			taskInput.value = "";
+			taskInput.focus();
+			message.textContent = "Task added.";
+		});
+
+		todoList.addEventListener("click", function (event) {
+			if (event.target.matches(".delete-button")) {
+				event.target.closest("li").remove();
+				message.textContent = "Task deleted.";
+			}
+		});
+	</script>
+</body>
+</html>

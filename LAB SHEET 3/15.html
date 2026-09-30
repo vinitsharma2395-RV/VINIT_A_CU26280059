@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Exercise 15 — ES6 Features</title>
+	<style>
+		body { max-width: 600px; margin: 3rem auto; padding: 0 1rem; font-family: Arial, sans-serif; }
+		label { display: block; margin: 1rem 0 0.35rem; }
+		input { box-sizing: border-box; width: 100%; padding: 0.6rem; }
+		button { margin-top: 1rem; padding: 0.6rem 0.9rem; cursor: pointer; }
+		#result { margin-top: 1rem; }
+	</style>
+</head>
+<body>
+	<main>
+		<h1>15. ES6 Features</h1>
+		<label for="nameInput">Name</label>
+		<input id="nameInput" value="Asha">
+		<label for="cityInput">City</label>
+		<input id="cityInput" value="Delhi">
+		<button type="button" id="greetButton">Create greeting</button>
+		<p id="result" aria-live="polite"></p>
+	</main>
+	<script>
+		// The arrow function uses destructuring in its parameter and returns a template literal.
+		const makeGreeting = ({ name, city }) => `Hello, ${name || "friend"} from ${city || "your city"}!`;
+
+		document.getElementById("greetButton").addEventListener("click", function () {
+			const person = {
+				name: document.getElementById("nameInput").value.trim(),
+				city: document.getElementById("cityInput").value.trim()
+			};
+			document.getElementById("result").textContent = makeGreeting(person);
+		});
+	</script>
+</body>
+</html>

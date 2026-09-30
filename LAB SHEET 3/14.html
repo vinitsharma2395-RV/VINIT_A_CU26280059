@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Exercise 14 — JSON Exception Handling</title>
+	<style>
+		body { max-width: 700px; margin: 3rem auto; padding: 0 1rem; font-family: Arial, sans-serif; }
+		textarea { box-sizing: border-box; width: 100%; min-height: 7rem; padding: 0.7rem; }
+		button { margin-top: 0.7rem; padding: 0.6rem 0.9rem; cursor: pointer; }
+		output, pre { display: block; margin-top: 1rem; white-space: pre-wrap; overflow-wrap: anywhere; }
+	</style>
+</head>
+<body>
+	<main>
+		<h1>14. Parse JSON with try...catch...finally</h1>
+		<label for="jsonInput">Enter a JSON string:</label>
+		<textarea id="jsonInput">{"name":"Asha","course":"JavaScript"}</textarea>
+		<button type="button" id="parseButton">Parse JSON</button>
+		<pre id="result" aria-live="polite"></pre>
+		<p id="finallyMessage"></p>
+	</main>
+	<script>
+		const jsonInput = document.getElementById("jsonInput");
+		const result = document.getElementById("result");
+		const finallyMessage = document.getElementById("finallyMessage");
+
+		document.getElementById("parseButton").addEventListener("click", function () {
+			finallyMessage.textContent = "";
+			try {
+				const parsedData = JSON.parse(jsonInput.value);
+				result.textContent = "Parsed successfully:\n" + JSON.stringify(parsedData, null, 2);
+			} catch (error) {
+				result.textContent = "JSON error: " + error.message;
+			} finally {
+				finallyMessage.textContent = "Parsing attempt finished.";
+			}
+		});
+	</script>
+</body>
+</html>

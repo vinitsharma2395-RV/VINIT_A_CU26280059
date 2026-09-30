@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Exercise 16 — Image Gallery Slider</title>
+	<style>
+		body { max-width: 700px; margin: 3rem auto; padding: 0 1rem; font-family: Arial, sans-serif; text-align: center; }
+		figure { margin: 1.5rem auto; }
+		img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 8px; background: #e3eaf0; }
+		button { margin: 0.7rem 0.25rem; padding: 0.6rem 1rem; cursor: pointer; }
+	</style>
+</head>
+<body>
+	<main>
+		<h1>16. Image Gallery Slider</h1>
+		<figure>
+			<img id="galleryImage" alt="">
+			<figcaption id="caption" aria-live="polite"></figcaption>
+		</figure>
+		<button type="button" id="previousButton">Previous</button>
+		<button type="button" id="nextButton">Next</button>
+	</main>
+	<script>
+		// These embedded SVG image sources work without an internet connection.
+		function makeImage(title, sky, hills, sun) {
+			const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
+				<rect width="800" height="450" fill="${sky}"/>
+				<circle cx="620" cy="115" r="55" fill="${sun}"/>
+				<path d="M0 350 190 150 360 350 500 205 800 390V450H0Z" fill="${hills}"/>
+				<path d="M0 390 220 250 410 410 600 280 800 400V450H0Z" fill="#183d4a" opacity=".55"/>
+				<text x="40" y="410" fill="white" font-family="Arial,sans-serif" font-size="34">${title}</text>
+			</svg>`;
+			return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+		}
+
+		const images = [
+			{ src: makeImage("Misty Peaks", "#8ecae6", "#387c79", "#ffe08a"), alt: "Blue mountains beneath a bright sun" },
+			{ src: makeImage("Golden Dusk", "#f4a261", "#9c5260", "#ffe7a0"), alt: "Warm sunset over layered hills" },
+			{ src: makeImage("Quiet Morning", "#bde0fe", "#588157", "#fff1a8"), alt: "Green hills under a morning sky" }
+		];
+		let currentIndex = 0;
+		const galleryImage = document.getElementById("galleryImage");
+		const caption = document.getElementById("caption");
+
+		function showImage() {
+			const image = images[currentIndex];
+			galleryImage.src = image.src;
+			galleryImage.alt = image.alt;
+			caption.textContent = `${currentIndex + 1} / ${images.length} — ${image.alt}`;
+		}
+
+		document.getElementById("previousButton").addEventListener("click", function () {
+			currentIndex = (currentIndex - 1 + images.length) % images.length;
+			showImage();
+		});
+		document.getElementById("nextButton").addEventListener("click", function () {
+			currentIndex = (currentIndex + 1) % images.length;
+			showImage();
+		});
+		showImage();
+	</script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Password Confirmation</title>
+	<style>
+		body {
+			max-width: 28rem;
+			margin: 2rem auto;
+			padding: 0 1rem;
+			font-family: Arial, sans-serif;
+		}
+
+		.form-field {
+			margin-bottom: 1rem;
+		}
+
+		label {
+			display: block;
+			margin-bottom: 0.35rem;
+		}
+
+		input {
+			box-sizing: border-box;
+			width: 100%;
+			padding: 0.55rem;
+		}
+
+		#passwordMessage {
+			min-height: 1.25rem;
+			margin: -0.5rem 0 1rem;
+			color: #b00020;
+		}
+
+		#formMessage {
+			color: #176b2c;
+		}
+	</style>
+</head>
+<body>
+	<main>
+		<h1>Create an account</h1>
+		<form id="accountForm">
+			<div class="form-field">
+				<label for="password">Password</label>
+				<input type="password" id="password" name="password" required autocomplete="new-password">
+			</div>
+
+			<div class="form-field">
+				<label for="confirmPassword">Confirm password</label>
+				<input type="password" id="confirmPassword" name="confirmPassword" required autocomplete="new-password" aria-describedby="passwordMessage">
+			</div>
+			<p id="passwordMessage" aria-live="polite"></p>
+
+			<button type="submit">Create account</button>
+			<p id="formMessage" role="status" aria-live="polite"></p>
+		</form>
+	</main>
+
+	<script>
+		const accountForm = document.getElementById("accountForm");
+		const password = document.getElementById("password");
+		const confirmPassword = document.getElementById("confirmPassword");
+		const passwordMessage = document.getElementById("passwordMessage");
+		const formMessage = document.getElementById("formMessage");
+
+		function validatePasswords() {
+			const passwordsMatch = password.value === confirmPassword.value;
+			const hasConfirmation = confirmPassword.value.length > 0;
+			const mismatchMessage = "Passwords do not match.";
+
+			confirmPassword.setCustomValidity(
+				hasConfirmation && !passwordsMatch ? mismatchMessage : ""
+			);
+			passwordMessage.textContent = hasConfirmation && !passwordsMatch
+				? mismatchMessage
+				: "";
+			formMessage.textContent = "";
+
+			return passwordsMatch;
+		}
+
+		password.addEventListener("input", validatePasswords);
+		confirmPassword.addEventListener("input", validatePasswords);
+
+		accountForm.addEventListener("submit", function (event) {
+			if (!validatePasswords()) {
+				event.preventDefault();
+				confirmPassword.focus();
+				return;
+			}
+
+			// This page is a front-end example and does not send data to a server.
+			event.preventDefault();
+			formMessage.textContent = "Passwords match. The form is ready to submit.";
+		});
+	</script>
+</body>
+</html>

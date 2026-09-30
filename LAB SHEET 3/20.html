@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Exercise 20 — Dynamic Table</title>
+	<style>
+		body { max-width: 700px; margin: 3rem auto; padding: 0 1rem; font-family: Arial, sans-serif; }
+		label { display: block; margin: 0.8rem 0 0.35rem; }
+		input { padding: 0.55rem; }
+		button { margin-top: 1rem; padding: 0.6rem 0.9rem; cursor: pointer; }
+		#tableContainer { margin-top: 1rem; overflow-x: auto; }
+		table { width: 100%; border-collapse: collapse; }
+		caption { margin-bottom: 0.5rem; font-weight: bold; }
+		th, td { padding: 0.6rem; border: 1px solid #8c9aa5; text-align: left; }
+		th { background: #e8f0f5; }
+	</style>
+</head>
+<body>
+	<main>
+		<h1>20. Dynamic Table Generator</h1>
+		<form id="tableForm">
+			<label for="rowCount">Number of rows (1–20)</label>
+			<input type="number" id="rowCount" min="1" max="20" value="3" required>
+			<label for="columnCount">Number of columns (1–20)</label>
+			<input type="number" id="columnCount" min="1" max="20" value="4" required>
+			<button type="submit">Generate table</button>
+		</form>
+		<div id="tableContainer"></div>
+	</main>
+	<script>
+		document.getElementById("tableForm").addEventListener("submit", function (event) {
+			event.preventDefault();
+			const rows = Number(document.getElementById("rowCount").value);
+			const columns = Number(document.getElementById("columnCount").value);
+			const table = document.createElement("table");
+			table.id = "generatedTable";
+			table.createCaption().textContent = `${rows} rows × ${columns} columns`;
+
+			for (let row = 1; row <= rows; row += 1) {
+				const tableRow = table.insertRow();
+				for (let column = 1; column <= columns; column += 1) {
+					tableRow.insertCell().textContent = `Row ${row}, Column ${column}`;
+				}
+			}
+
+			document.getElementById("tableContainer").replaceChildren(table);
+		});
+	</script>
+</body>
+</html>

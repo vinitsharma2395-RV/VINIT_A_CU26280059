@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Closure Counter</title>
+	<style>
+		body {
+			max-width: 24rem;
+			margin: 3rem auto;
+			padding: 0 1rem;
+			font-family: Arial, sans-serif;
+			text-align: center;
+		}
+
+		#count {
+			font-size: 3rem;
+		}
+
+		button {
+			min-width: 3rem;
+			padding: 0.6rem 1rem;
+			font-size: 1.2rem;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<main>
+		<h1>Private Counter</h1>
+		<p id="count" aria-live="polite">0</p>
+		<button type="button" id="decrementButton" aria-label="Decrement">−</button>
+		<button type="button" id="incrementButton" aria-label="Increment">+</button>
+	</main>
+
+	<script>
+		function createCounter() {
+			let count = 0; // Private: only the returned methods can access this variable.
+
+			return {
+				increment() {
+					return ++count;
+				},
+				decrement() {
+					return --count;
+				},
+				getValue() {
+					return count;
+				}
+			};
+		}
+
+		const counter = createCounter();
+		const countDisplay = document.getElementById("count");
+
+		document.getElementById("incrementButton").addEventListener("click", function () {
+			countDisplay.textContent = counter.increment();
+		});
+
+		document.getElementById("decrementButton").addEventListener("click", function () {
+			countDisplay.textContent = counter.decrement();
+		});
+	</script>
+</body>
+</html>

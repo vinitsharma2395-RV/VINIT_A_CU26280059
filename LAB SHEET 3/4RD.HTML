@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Fibonacci Series</title>
+</head>
+<body>
+	<h1>Fibonacci Series Generator</h1>
+
+	<label for="terms">Number of terms:</label>
+	<input type="number" id="terms" min="1" step="1">
+
+	<label for="loopType">Choose a loop:</label>
+	<select id="loopType">
+		<option value="for">for loop</option>
+		<option value="while">while loop</option>
+		<option value="doWhile">do-while loop</option>
+	</select>
+
+	<button type="button" onclick="generateFibonacci()">Generate</button>
+	<div id="result"></div>
+
+	<script>
+		function generateFibonacci() {
+			const termsInput = document.getElementById("terms").value;
+			const terms = Number(termsInput);
+			const loopType = document.getElementById("loopType").value;
+			const result = document.getElementById("result");
+
+			if (termsInput === "" || !Number.isInteger(terms) || terms < 1) {
+				result.textContent = "Please enter a positive whole number of terms.";
+				return;
+			}
+
+			const series = [];
+			let first = 0;
+			let second = 1;
+
+			if (loopType === "for") {
+				for (let count = 0; count < terms; count++) {
+					series.push(first);
+					[first, second] = [second, first + second];
+				}
+			} else if (loopType === "while") {
+				let count = 0;
+				while (count < terms) {
+					series.push(first);
+					[first, second] = [second, first + second];
+					count++;
+				}
+			} else {
+				let count = 0;
+				do {
+					series.push(first);
+					[first, second] = [second, first + second];
+					count++;
+				} while (count < terms);
+			}
+
+			result.textContent = `Fibonacci series: ${series.join(", ")}`;
+		}
+	</script>
+</body>
+</html>

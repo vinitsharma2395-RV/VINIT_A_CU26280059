@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Interactive Calculator</title>
+	<style>
+		.calculator {
+			width: 240px;
+		}
+
+		#display {
+			box-sizing: border-box;
+			width: 100%;
+			margin-bottom: 8px;
+			padding: 8px;
+			font-size: 1.2rem;
+			text-align: right;
+		}
+
+		.buttons {
+			display: grid;
+			grid-template-columns: repeat(4, 1fr);
+			gap: 5px;
+		}
+
+		button {
+			padding: 10px;
+			font-size: 1rem;
+		}
+	</style>
+</head>
+<body>
+	<h1>Interactive Calculator</h1>
+
+	<main class="calculator">
+		<input id="display" type="text" value="0" readonly aria-label="Calculator display">
+
+		<div class="buttons">
+			<button type="button" data-action="clear">C</button>
+			<button type="button" data-action="operator" data-value="/">/</button>
+			<button type="button" data-action="operator" data-value="*">*</button>
+			<button type="button" data-action="delete">&#9003;</button>
+
+			<button type="button" data-action="number" data-value="7">7</button>
+			<button type="button" data-action="number" data-value="8">8</button>
+			<button type="button" data-action="number" data-value="9">9</button>
+			<button type="button" data-action="operator" data-value="-">-</button>
+
+			<button type="button" data-action="number" data-value="4">4</button>
+			<button type="button" data-action="number" data-value="5">5</button>
+			<button type="button" data-action="number" data-value="6">6</button>
+			<button type="button" data-action="operator" data-value="+">+</button>
+
+			<button type="button" data-action="number" data-value="1">1</button>
+			<button type="button" data-action="number" data-value="2">2</button>
+			<button type="button" data-action="number" data-value="3">3</button>
+			<button type="button" data-action="equals" class="equals">=</button>
+
+			<button type="button" data-action="number" data-value="0">0</button>
+			<button type="button" data-action="decimal" data-value=".">.</button>
+		</div>
+	</main>
+
+	<script>
+		const display = document.getElementById("display");
+		let firstNumber = "";
+		let operator = "";
+		let waitingForSecondNumber = false;
+
+		function calculate(first, second, selectedOperator) {
+			switch (selectedOperator) {
+				case "+": return first + second;
+				case "-": return first - second;
+				case "*": return first * second;
+				case "/": return second === 0 ? null : first / second;
+				default: return second;
+			}
+		}
+
+		function handleButtonClick(event) {
+			const button = event.currentTarget;
+			const action = button.dataset.action;
+			const value = button.dataset.value;
+
+			if (action === "number") {
+				if (display.value === "0" || waitingForSecondNumber) {
+					display.value = value;
+					waitingForSecondNumber = false;
+				} else {
+					display.value += value;
+				}
+			} else if (action === "decimal") {
+				if (waitingForSecondNumber) {
+					display.value = "0.";
+					waitingForSecondNumber = false;
+				} else if (!display.value.includes(".")) {
+					display.value += ".";
+				}
+			} else if (action === "operator") {
+				firstNumber = Number(display.value);
+				operator = value;
+				waitingForSecondNumber = true;
+			} else if (action === "equals") {
+				if (operator === "") return;
+				const result = calculate(firstNumber, Number(display.value), operator);
+				display.value = result === null ? "Cannot divide by zero" : String(result);
+				firstNumber = "";
+				operator = "";
+				waitingForSecondNumber = true;
+			} else if (action === "clear") {
+				display.value = "0";
+				firstNumber = "";
+				operator = "";
+				waitingForSecondNumber = false;
+			} else if (action === "delete") {
+				display.value = display.value.length > 1 ? display.value.slice(0, -1) : "0";
+			}
+		}
+
+		document.querySelectorAll("button").forEach((button) => {
+			button.addEventListener("click", handleButtonClick);
+		});
+	</script>
+</body>
+</html>
